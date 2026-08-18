@@ -2,6 +2,21 @@
 
 Create a simple hello-world site to test the ai-app-factory build process Built and evolved via the unattended (Lane B) Claude Code pipeline: label an issue `claude-go` and `.github/workflows/claude.yml` implements it, opens a PR, and records the run in `docs/journal.md`.
 
+This is a **disposable factory test, not a maintained project** — it exists to exercise
+the `ai-app-factory` pipeline, and its content is not the point.
+
+## Live site
+
+<https://mmorrow24work.github.io/ai-app-factory-hello-world-v4/>
+
+## Viewing locally
+
+Open `index.html` in a browser. Note that a plain `file://` open serves the page from the
+filesystem root, not from the `/ai-app-factory-hello-world-v4/` subpath the site is actually
+deployed under on GitHub Pages — so a relative-path bug that would 404 in production can
+still look fine locally. Serving the repo root over HTTP (e.g. `python3 -m http.server`) and
+browsing to the page under a subpath is closer to production, though not identical.
+
 ## Requested by
 
 [@mmorrow2012](https://github.com/mmorrow2012), via [ai-app-factory](https://github.com/mmorrow24work/ai-app-factory).

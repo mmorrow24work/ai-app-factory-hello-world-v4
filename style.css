@@ -48,6 +48,30 @@ p {
   color: var(--muted);
 }
 
-.provenance a {
+.provenance a,
+.nav-link a,
+.pipeline a {
   color: var(--accent);
+}
+
+.pipeline {
+  padding-left: 1.25rem;
+}
+
+.pipeline li {
+  margin: 0.5rem 0;
+}
+
+code {
+  background: #f0f0f5;
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.3rem;
+  font-size: 0.9em;
+}
+
+.nav-link {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e6ea;
+  font-size: 0.875rem;
 }
