@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — ai-app-factory-hello-world-v4</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>About this build</h1>
+    <p>
+      <strong>ai-app-factory-hello-world-v4</strong> is a disposable test site: it exists
+      to exercise the <a href="https://github.com/mmorrow24work/ai-app-factory">ai-app-factory</a>
+      unattended build pipeline, not to be a product. If you've never seen this repo before,
+      here is the full path a change takes from request to a live page.
+    </p>
+
+    <ol class="pipeline">
+      <li><strong>Intake issue.</strong> The requester files an issue in the
+        <code>ai-app-factory</code> meta-repo asking for a project like this one.</li>
+      <li><strong>Design doc PR.</strong> A design doc is drafted and merged, laying out
+        what gets built, in what order, and which lane (attended or unattended) each
+        piece runs in.</li>
+      <li><strong>Provisioning.</strong> The repo is bootstrapped from the
+        <code>ai-app-factory</code> template. Two steps here are human-only: adding
+        <code>pages-deploy.yml</code> by hand (the pipeline's token doesn't carry
+        Workflows scope, so it can't create or edit workflow files), and turning on
+        GitHub Pages for the repo in its Settings.</li>
+      <li><strong>Milestone seeding.</strong> Milestone issues (M0 through M3, this page
+        is M3) are filed in this repo, each one sequenced so it doesn't start until the
+        milestone before it has merged.</li>
+      <li><strong>Unattended implementation.</strong> Applying the <code>claude-go</code>
+        label to an issue fires <code>.github/workflows/claude.yml</code>, which hands
+        that issue to Claude Code running unattended. It implements the issue's
+        acceptance criteria and opens a pull request.</li>
+      <li><strong>Requester review.</strong> The requester reviews and approves the pull
+        request from their own account.</li>
+      <li><strong>Merge.</strong> That approval is what <code>review-decision.yml</code>'s
+        requester-match branch checks for before merging the pull request to
+        <code>main</code>.</li>
+      <li><strong>Deploy.</strong> The merge to <code>main</code> triggers
+        <code>pages-deploy.yml</code>, which publishes the repo root straight to GitHub
+        Pages &mdash; no build step, no bundler, nothing to compile.</li>
+    </ol>
+
+    <p>
+      Split by who can do it: the requester, <a href="https://github.com/mmorrow2012">@mmorrow2012</a>,
+      is the one human step inside the repeatable loop &mdash; approving each pull request
+      from their own account, which is what authorizes the merge. The owner,
+      <a href="https://github.com/mmorrow24work">@mmorrow24work</a>, did the two steps
+      that only happen once and can't be done unattended at all: adding
+      <code>pages-deploy.yml</code> and enabling Pages. Everything else &mdash; reading the
+      issue, writing the code, opening the PR &mdash; is Claude Code running unattended.
+    </p>
+
+    <p>
+      This project ran alongside <a href="https://github.com/mmorrow24work/ai-app-factory-hello-world-v3">ai-app-factory-hello-world-v3</a>,
+      deliberately. v4 is near-identical to v3 by design: the content of either site isn't
+      the thing under test, concurrency is. Running two unattended builds at once, with the
+      same requester and the same Claude Code subscription token, is what actually exercises
+      the pipeline &mdash; whether two projects can move through intake, implementation,
+      review, and deploy in parallel without stepping on each other.
+    </p>
+
+    <p class="nav-link"><a href="index.html">&larr; Back to the hello page</a></p>
+  </main>
+</body>
+</html>
